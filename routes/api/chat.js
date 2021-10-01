@@ -36,7 +36,6 @@ router.get('/:chatId', async (req, res) => {
     _id: req.params.chatId,
     users: { $elemMatch: { $eq: req.session.user._id } },
   }).populate('users');
-  //console.log(chats);
   res.status(200).send(chats);
 });
 router.put('/:chatId', async (req, res) => {
@@ -53,6 +52,7 @@ router.get('/:chatId/message', async (req, res) => {
   const messages = await Message.find({ chat: req.params.chatId }).populate(
     'sender'
   );
+  //console.log(messages);
   res.status(200).send(messages);
 });
 

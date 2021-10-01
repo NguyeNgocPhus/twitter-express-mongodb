@@ -11,14 +11,12 @@ $(document).ready(() => {
   });
 
   $.get(`/api/chat/${chatId}`, (data) => {
-    // console.log(data);
     $('#chatName').text(getChatName(data));
   });
 
   $.get(`/api/chat/${chatId}/message`, (data) => {
     var messages = [];
     var lastSenderId = '';
-    // console.log(data);
     data.forEach((message, index) => {
       var html = createMessageHtml(message, data[index + 1], lastSenderId);
       messages.push(html);
